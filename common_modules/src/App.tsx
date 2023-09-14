@@ -2,6 +2,7 @@ import HorizontalScroll from './common/HorizontalScroll';
 import ModalChoose from './common/ModalChoose';
 import MyCarousel from './common/Carousel';
 import React, {useState} from 'react';
+import SearchBar from './common/SearchBar';
 import TabViewExample from './common/TabViewExample';
 import {Pressable, SafeAreaView, ScrollView, Text, View} from 'react-native';
 
@@ -17,6 +18,8 @@ const App = () => {
         backgroundColor: 'pink',
       }}>
       <ScrollView horizontal={false}>
+        <SearchBar />
+
         <TabViewExample />
         <Text
           style={{
@@ -39,7 +42,12 @@ const App = () => {
           <HorizontalScroll />
         </View>
 
-        {activeModal && <ModalChoose activeModal={activeModal} />}
+        {activeModal && (
+          <ModalChoose
+            setActiveModal={setActiveModal}
+            activeModal={activeModal}
+          />
+        )}
         <Pressable
           style={{
             backgroundColor: 'red',

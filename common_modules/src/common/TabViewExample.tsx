@@ -21,7 +21,7 @@ const TabScreen = ({tabLabel}) => {
     <ScrollView style={styles.tabContent}>
       {items.map((item, index) => (
         <TouchableOpacity key={index} style={styles.item}>
-          <Text>{item}</Text>
+          <Text testID={`tab${tabLabel}-item${index}`}>{item}</Text>
         </TouchableOpacity>
       ))}
     </ScrollView>
@@ -34,12 +34,14 @@ const TabViewExample = () => {
 
   const tabs = ['Tab 1', 'Tab 2', 'Tab 3'];
 
-  const scrollToTab = index => {
+  const scrollToTab = (index: any) => {
     setActiveTab(index);
-    scrollViewRef.current.scrollTo({
-      x: index * Dimensions.get('window').width,
-      animated: true,
-    });
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({
+        x: index * Dimensions.get('window').width,
+        animated: true,
+      });
+    }
   };
 
   return (
